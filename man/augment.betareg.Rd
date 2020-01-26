@@ -8,8 +8,9 @@
   x,
   data = model.frame(x),
   newdata = NULL,
-  type.predict,
-  type.residuals,
+  type.predict = c("response", "link", "precision", "variance", "quantile"),
+  type.residuals = c("sweighted2", "deviance", "pearson", "response", "weighted",
+    "sweighted"),
   ...
 )
 }

@@ -70,6 +70,8 @@ has_rownames <- function(df) {
 #'
 #' @return a data.frame, with rownames moved into a column and new column
 #' names assigned
+#' 
+#' @noRd
 fix_data_frame <- function(x, newnames = NULL, newcol = "term") {
   if (!is.null(newnames) && length(newnames) != ncol(x)) {
     stop("newnames must be NULL or have length equal to number of columns")
