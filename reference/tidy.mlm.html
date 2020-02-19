@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -238,16 +238,16 @@ the model with <code>na.action = na.exclude</code>.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>mpg</span>, <span class='no'>disp</span>) ~ <span class='no'>wt</span>, <span class='no'>mtcars</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>mod</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 8
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>mod</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 8</span><span>
 #&gt;   response term        estimate std.error statistic  p.value conf.low conf.high
-#&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 mpg      (Intercept)    37.3      1.88      19.9  8.24e-19    33.5      41.1 
-#&gt; 2 mpg      wt             -5.34     0.559     -9.56 1.29e-10    -6.49     -4.20
-#&gt; 3 disp     (Intercept)  -131.      35.7       -3.67 9.33e- 4  -204.      -58.2 
-#&gt; 4 disp     wt            112.      10.6       10.6  1.22e-11    90.8     134.  </div><div class='input'>
-</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> mpg      (Intercept)    37.3      1.88      19.9  8.24</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-19</span><span>    33.5      41.1 
+#&gt; </span><span style='color: #555555;'>2</span><span> mpg      wt             -</span><span style='color: #BB0000;'>5.34</span><span>     0.559     -</span><span style='color: #BB0000;'>9.56</span><span> 1.29</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>    -</span><span style='color: #BB0000;'>6.49</span><span>     -</span><span style='color: #BB0000;'>4.20</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> disp     (Intercept)  -</span><span style='color: #BB0000;'>131.</span><span>      35.7       -</span><span style='color: #BB0000;'>3.67</span><span> 9.33</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>  -</span><span style='color: #BB0000;'>204.</span><span>      -</span><span style='color: #BB0000;'>58.2</span><span> 
+#&gt; </span><span style='color: #555555;'>4</span><span> disp     wt            112.      10.6       10.6  1.22</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-11</span><span>    90.8     134.  </div><div class='input'>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

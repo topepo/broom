@@ -97,7 +97,7 @@ the measure will be reported as NA." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -255,23 +255,23 @@ the <code>data</code> argument.</p></td>
 <span class='no'>fit.ccP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/cch.html'>cch</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='no'>edrel</span>, <span class='no'>rel</span>) ~ <span class='no'>stage</span> + <span class='no'>histol</span> + <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ccoh.data</span>,
                <span class='kw'>subcoh</span> <span class='kw'>=</span> ~<span class='no'>subcohort</span>, <span class='kw'>id</span><span class='kw'>=</span> ~<span class='no'>seqno</span>, <span class='kw'>cohort.size</span> <span class='kw'>=</span> <span class='fl'>4028</span>)
 
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>fit.ccP</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 7
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>fit.ccP</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 7</span><span>
 #&gt;   term     estimate std.error statistic  p.value conf.low conf.high
-#&gt;   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 stageII    0.735     0.168       4.36 1.30e- 5  0.404      1.06  
-#&gt; 2 stageIII   0.597     0.173       3.44 5.77e- 4  0.257      0.937 
-#&gt; 3 stageIV    1.38      0.205       6.76 1.40e-11  0.983      1.79  
-#&gt; 4 histolUH   1.50      0.160       9.38 0.        1.19       1.81  
-#&gt; 5 age        0.0433    0.0237      1.82 6.83e- 2 -0.00324    0.0898</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> stageII    0.735     0.168       4.36 1.30</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  0.404      1.06  
+#&gt; </span><span style='color: #555555;'>2</span><span> stageIII   0.597     0.173       3.44 5.77</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>  0.257      0.937 
+#&gt; </span><span style='color: #555555;'>3</span><span> stageIV    1.38      0.205       6.76 1.40</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-11</span><span>  0.983      1.79  
+#&gt; </span><span style='color: #555555;'>4</span><span> histolUH   1.50      0.160       9.38 0.  </span><span style='color: #555555;'> </span><span>     1.19       1.81  
+#&gt; </span><span style='color: #555555;'>5</span><span> age        0.043</span><span style='text-decoration: underline;'>3</span><span>    0.023</span><span style='text-decoration: underline;'>7</span><span>      1.82 6.83</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> -</span><span style='color: #BB0000;'>0.003</span><span style='color: #BB0000;text-decoration: underline;'>24</span><span>    0.089</span><span style='text-decoration: underline;'>8</span><span></div><div class='input'>
 <span class='co'># coefficient plot</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>fit.ccP</span>), <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>estimate</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>term</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_errorbarh.html'>geom_errorbarh</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>xmin</span> <span class='kw'>=</span> <span class='no'>conf.low</span>, <span class='kw'>xmax</span> <span class='kw'>=</span> <span class='no'>conf.high</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_vline</a></span>(<span class='kw'>xintercept</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='img'><img src='glance.cch-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

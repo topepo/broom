@@ -48,7 +48,7 @@
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
       <h1>Exporting tidying methods from a package</h1>
                         <h4 class="author">Alex Hayes</h4>
             
-            <h4 class="date">2019-12-14</h4>
+            <h4 class="date">2020-02-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tidymodels/broom/blob/master/vignettes/external-tidiers.Rmd"><code>vignettes/external-tidiers.Rmd</code></a></small>
       <div class="hidden name"><code>external-tidiers.Rmd</code></div>
@@ -135,12 +135,12 @@
 <h2 class="hasAnchor">
 <a href="#re-exporting-tidy-glance-and-augment-generics" class="anchor"></a>Re-exporting <code>tidy()</code>, <code>glance()</code> and <code>augment()</code> generics</h2>
 <p>First you’ll need to add the <a href="https://github.com/tidymodels/modelgenerics">modelgenerics</a> package to <code>Imports</code>. We recommend using the <a href="https://github.com/r-lib/usethis">usethis</a> package for this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">usethis<span class="op">::</span><span class="kw"><a href="https://usethis.r-lib.org/reference/use_package.html">use_package</a></span>(<span class="st">"modelgenerics"</span>, <span class="st">"Imports"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">"modelgenerics"</span>, <span class="st">"Imports"</span>)</span></code></pre></div>
 <p>Next you’ll need to re-export the appropriate tidying methods. If you plan to implement a <code><a href="https://rdrr.io/pkg/generics/man/glance.html">glance()</a></code> method, for example, you can re-export the glance generic by adding the following somewhere in your package</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">#' @importFrom modelgenerics glance</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#' @export</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">modelgenerics<span class="op">::</span>glance</a></code></pre></div>
-<p>Run <code><a href="https://rdrr.io/pkg/devtools/man/document.html">devtools::document()</a></code> for these changes to take effect.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#' @importFrom modelgenerics glance</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#' @export</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>modelgenerics<span class="op">::</span>glance</span></code></pre></div>
+<p>Run <code>devtools::document()</code> for these changes to take effect.</p>
 <p>Note: please do not define <code><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy()</a></code>, <code><a href="https://rdrr.io/pkg/generics/man/glance.html">glance()</a></code> or <code><a href="https://rdrr.io/pkg/generics/man/augment.html">augment()</a></code> generics in your package. This will result in namespace conflicts whenever your package is used along other packages that also export tidying methods.</p>
 </div>
 <div id="implement-appropriate-tidying-methods" class="section level2">
@@ -153,14 +153,14 @@
 <a href="#testing" class="anchor"></a>Testing</h2>
 <p>Now that you have a tidying method, you’ll want to test it. In addition to testing the specific functionality of your tidying methods, you should also pass the standardized tests exported from <a href="https://github.com/alexpghayes/modeltests">modeltests</a>.</p>
 <p>To import these tests you’ll need to add <code>modeltests</code> to <code>Suggests</code>, which you can accomplish with:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># once modeltests makes its way onto CRAN:</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># usethis::use_package("modeltests", "Suggests")</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># until then:</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"alexpghayes/modeltests"</span>)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">usethis<span class="op">::</span><span class="kw"><a href="https://usethis.r-lib.org/reference/use_package.html">use_dev_package</a></span>(<span class="st">"modeltests"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># once modeltests makes its way onto CRAN:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># usethis::use_package("modeltests", "Suggests")</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># until then:</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"alexpghayes/modeltests"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>usethis<span class="op">::</span><span class="kw">use_dev_package</span>(<span class="st">"modeltests"</span>)</span></code></pre></div>
 <p>You can then write tests for your tidiers following the advice in <code><a href="../articles/adding-tidiers.html">vignette("adding-tidiers")</a></code>.</p>
-<p>If you’re run <code><a href="https://rdrr.io/pkg/devtools/man/test.html">devtools::test()</a></code> and <code><a href="https://rdrr.io/pkg/devtools/man/check.html">devtools::check()</a></code> and didn’t fail any tests or set off R CMD Check ERRORS, WARNINGS or NOTES, you’re done!</p>
+<p>If you’re run <code>devtools::test()</code> and <code>devtools::check()</code> and didn’t fail any tests or set off R CMD Check ERRORS, WARNINGS or NOTES, you’re done!</p>
 </div>
 <div id="f-a-q-" class="section level2">
 <h2 class="hasAnchor">
@@ -169,7 +169,7 @@
 <h3 class="hasAnchor">
 <a href="#should-i-import-or-suggest-broom-or-broom-mixed" class="anchor"></a>Should I <code>Import</code> or <code>Suggest</code> <code>broom</code> or <code>broom.mixed</code>?</h3>
 <p>If you are using tidiers from broom, such as <code><a href="../reference/tidy.lm.html">tidy.lm()</a></code>, then you will need to depend on <code>broom</code>, probably via <code>Imports</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">use_package</span>(<span class="st">"broom"</span>, <span class="st">"Imports"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">use_package</span>(<span class="st">"broom"</span>, <span class="st">"Imports"</span>)</span></code></pre></div>
 <p>Similarly, if you are using tidiers from <code>broom.mixed</code>, you’ll need to <code>Import</code> <code>broom.mixed</code>.</p>
 <p>You can import <code>broom.mixed</code> separately from <code>broom</code>, or you can mix and match them however you want.</p>
 </div>
@@ -188,7 +188,7 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
         <div id="tocnav">
       <h2 class="hasAnchor">

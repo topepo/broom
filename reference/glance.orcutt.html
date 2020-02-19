@@ -97,7 +97,7 @@ the measure will be reported as NA." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -226,13 +226,13 @@ the <code>data</code> argument.</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>orcutt</span>)
 
 <span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>mpg</span> ~ <span class='no'>wt</span> + <span class='no'>qsec</span> + <span class='no'>disp</span>, <span class='no'>mtcars</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>reg</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 5
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>reg</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 5</span><span>
 #&gt;   term         estimate std.error statistic  p.value
-#&gt;   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 (Intercept) 19.8         5.94      3.33   0.00244 
-#&gt; 2 wt          -5.03        1.22     -4.11   0.000310
-#&gt; 3 qsec         0.927       0.342     2.71   0.0114  
-#&gt; 4 disp        -0.000128    0.0106   -0.0121 0.990   </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept) 19.8         5.94      3.33   0.002</span><span style='text-decoration: underline;'>44</span><span> 
+#&gt; </span><span style='color: #555555;'>2</span><span> wt          -</span><span style='color: #BB0000;'>5.03</span><span>        1.22     -</span><span style='color: #BB0000;'>4.11</span><span>   0.000</span><span style='text-decoration: underline;'>310</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> qsec         0.927       0.342     2.71   0.011</span><span style='text-decoration: underline;'>4</span><span>  
+#&gt; </span><span style='color: #555555;'>4</span><span> disp        -</span><span style='color: #BB0000;'>0.000</span><span style='color: #BB0000;text-decoration: underline;'>128</span><span>    0.010</span><span style='text-decoration: underline;'>6</span><span>   -</span><span style='color: #BB0000;'>0.012</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 0.990   </div><div class='input'>
 <span class='no'>co</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/orcutt/man/cochrane.orcutt.html'>cochrane.orcutt</a></span>(<span class='no'>reg</span>)
 <span class='no'>co</span></div><div class='output co'>#&gt; Cochrane-orcutt estimation for first order autocorrelation 
 #&gt;  
@@ -249,21 +249,21 @@ the <code>data</code> argument.</p></td>
 #&gt;  coefficients: 
 #&gt; (Intercept)          wt        qsec        disp 
 #&gt;   21.814858   -4.852590    0.797029   -0.001359 </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>co</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 5
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>co</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 5</span><span>
 #&gt;   term        estimate std.error statistic p.value
-#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 (Intercept) 21.8        6.63       3.29  0.00279
-#&gt; 2 wt          -4.85       1.33      -3.65  0.00112
-#&gt; 3 qsec         0.797      0.370      2.15  0.0402 
-#&gt; 4 disp        -0.00136    0.0110    -0.123 0.903  </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/glance.html'>glance</a></span>(<span class='no'>co</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 9
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept) 21.8        6.63       3.29  0.002</span><span style='text-decoration: underline;'>79</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> wt          -</span><span style='color: #BB0000;'>4.85</span><span>       1.33      -</span><span style='color: #BB0000;'>3.65</span><span>  0.001</span><span style='text-decoration: underline;'>12</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> qsec         0.797      0.370      2.15  0.040</span><span style='text-decoration: underline;'>2</span><span> 
+#&gt; </span><span style='color: #555555;'>4</span><span> disp        -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>36</span><span>    0.011</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>0.123</span><span> 0.903  </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/glance.html'>glance</a></span>(<span class='no'>co</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 9</span><span>
 #&gt;   r.squared adj.r.squared   rho number.interact… dw.original p.value.original
-#&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
-#&gt; 1     0.799         0.777 0.268                7        1.50           0.0406
-#&gt; # … with 3 more variables: dw.transformed &lt;dbl&gt;, p.value.transformed &lt;dbl&gt;,
-#&gt; #   nobs &lt;int&gt;</div><div class='input'>
-</div></pre>
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     0.799         0.777 0.268                7        1.50           0.040</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'># … with 3 more variables: dw.transformed </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, p.value.transformed </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   nobs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

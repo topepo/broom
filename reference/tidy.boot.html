@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -262,18 +262,18 @@ and <code>statistic</code> columns are omitted, and only <code>estimate</code> a
 }
 
 <span class='no'>bootres</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/boot/man/boot.html'>boot</a></span>(<span class='no'>clotting</span>, <span class='no'>bootfun</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>999</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>g1</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 7
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>g1</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 7</span><span>
 #&gt;   term        estimate std.error statistic       p.value conf.low conf.high
-#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 (Intercept)  -0.0239  0.00133      -18.0 0.000000400    -0.0265   -0.0213
-#&gt; 2 log(u)        0.0236  0.000577      40.9 0.00000000136   0.0225    0.0247</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>bootres</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 6
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)  -</span><span style='color: #BB0000;'>0.023</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  0.001</span><span style='text-decoration: underline;'>33</span><span>      -</span><span style='color: #BB0000;'>18.0</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>400    -</span><span style='color: #BB0000;'>0.026</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>   -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> log(u)        0.023</span><span style='text-decoration: underline;'>6</span><span>  0.000</span><span style='text-decoration: underline;'>577</span><span>      40.9 0.000</span><span style='text-decoration: underline;'>000</span><span>001</span><span style='text-decoration: underline;'>36</span><span>   0.022</span><span style='text-decoration: underline;'>5</span><span>    0.024</span><span style='text-decoration: underline;'>7</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>bootres</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
 #&gt;   term        statistic      bias std.error conf.low conf.high
-#&gt;   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 (Intercept)   -0.0239 -0.00185    0.00322  -0.0328   -0.0222
-#&gt; 2 log(u)         0.0236  0.000557   0.00103   0.0227    0.0265</div><div class='input'>
-</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)   -</span><span style='color: #BB0000;'>0.023</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>85</span><span>    0.003</span><span style='text-decoration: underline;'>22</span><span>  -</span><span style='color: #BB0000;'>0.032</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>   -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> log(u)         0.023</span><span style='text-decoration: underline;'>6</span><span>  0.000</span><span style='text-decoration: underline;'>557</span><span>   0.001</span><span style='text-decoration: underline;'>03</span><span>   0.022</span><span style='text-decoration: underline;'>7</span><span>    0.026</span><span style='text-decoration: underline;'>5</span><span></div><div class='input'>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

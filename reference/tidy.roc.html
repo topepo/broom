@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -212,20 +212,20 @@ the <code>data</code> argument.</p></td>
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/AUC/man/roc.html'>roc</a></span>(<span class='no'>churn</span>$<span class='no'>predictions</span>,<span class='no'>churn</span>$<span class='no'>labels</span>)
 
 <span class='no'>td</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>r</span>)
-<span class='no'>td</span></div><div class='output co'>#&gt; # A tibble: 220 x 3
+<span class='no'>td</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 220 x 3</span><span>
 #&gt;    cutoff     fpr   tpr
-#&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1  1     0       0    
-#&gt;  2  1     0.00262 0.164
-#&gt;  3  0.972 0.00350 0.164
-#&gt;  4  0.968 0.00350 0.182
-#&gt;  5  0.964 0.00350 0.189
-#&gt;  6  0.96  0.00350 0.201
-#&gt;  7  0.932 0.00437 0.201
-#&gt;  8  0.91  0.00437 0.208
-#&gt;  9  0.908 0.00525 0.208
-#&gt; 10  0.902 0.00525 0.214
-#&gt; # … with 210 more rows</div><div class='input'>
+#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  1     0       0    
+#&gt; </span><span style='color: #555555;'> 2</span><span>  1     0.002</span><span style='text-decoration: underline;'>62</span><span> 0.164
+#&gt; </span><span style='color: #555555;'> 3</span><span>  0.972 0.003</span><span style='text-decoration: underline;'>50</span><span> 0.164
+#&gt; </span><span style='color: #555555;'> 4</span><span>  0.968 0.003</span><span style='text-decoration: underline;'>50</span><span> 0.182
+#&gt; </span><span style='color: #555555;'> 5</span><span>  0.964 0.003</span><span style='text-decoration: underline;'>50</span><span> 0.189
+#&gt; </span><span style='color: #555555;'> 6</span><span>  0.96  0.003</span><span style='text-decoration: underline;'>50</span><span> 0.201
+#&gt; </span><span style='color: #555555;'> 7</span><span>  0.932 0.004</span><span style='text-decoration: underline;'>37</span><span> 0.201
+#&gt; </span><span style='color: #555555;'> 8</span><span>  0.91  0.004</span><span style='text-decoration: underline;'>37</span><span> 0.208
+#&gt; </span><span style='color: #555555;'> 9</span><span>  0.908 0.005</span><span style='text-decoration: underline;'>25</span><span> 0.208
+#&gt; </span><span style='color: #555555;'>10</span><span>  0.902 0.005</span><span style='text-decoration: underline;'>25</span><span> 0.214
+#&gt; </span><span style='color: #555555;'># … with 210 more rows</span><span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>td</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>fpr</span>, <span class='no'>tpr</span>)) +
@@ -243,9 +243,9 @@ the <code>data</code> argument.</p></td>
 #&gt; <span class='warning'>Did you want `data = c(labels, value)`?</span></div><div class='input'>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>rocs</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>fpr</span>, <span class='no'>tpr</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>algorithm</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>()</div><div class='img'><img src='tidy.roc-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

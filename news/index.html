@@ -86,7 +86,7 @@
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -151,9 +151,9 @@
       <small>Source: <a href='https://github.com/tidymodels/broom/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="broom-0-5-3-9000" class="section level1">
+    <div id="broom-0539000" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-5-3-9000" class="anchor"></a>broom 0.5.3.9000<small> Unreleased </small>
+<a href="#broom-0539000" class="anchor"></a>broom 0.5.3.9000<small> Unreleased </small>
 </h1>
 <p>(To be released as 0.7.0)</p>
 <div id="breaking-changes" class="section level2">
@@ -176,11 +176,12 @@
 <div id="deprecations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#deprecations" class="anchor"></a>Deprecations</h3>
-<p>This release of <code>broom</code> hard-deprecates the following tidiers:</p>
+<p>This release of <code>broom</code> hard-deprecates the following functions and tidiers:</p>
 <ul>
 <li>Data frame, rowwise data frame, vector and matrix tidiers have been removed from <code>broom</code>
 </li>
 <li><code>bootstrap()</code></li>
+<li><code>confint_tidy()</code></li>
 <li><code>glance.summary.lm()</code></li>
 <li><code><a href="../reference/augment.glmRob.html">augment.glmRob()</a></code></li>
 <li>
@@ -292,6 +293,7 @@
 <h3 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h3>
 <ul>
+<li>Bug fix to return confidence intervals correct in tidy.drc() (<a href='https://github.com/tidymodels/broom/issues/798'>#798</a>)</li>
 <li>Bug fix to better allow <code><a href="../reference/tidy.boot.html">tidy.boot()</a></code> to support confidence intervals (<a href='https://github.com/tidymodels/broom/issues/581'>#581</a>)</li>
 <li>Bug fix to allow <code><a href="../reference/augment.kmeans.html">augment.kmeans()</a></code> to work with masked data (<a href='https://github.com/tidymodels/broom/issues/609'>#609</a>)</li>
 <li>Bug fix to allow <code><a href="../reference/augment.Mclust.html">augment.Mclust()</a></code> to work on univariate data (<a href='https://github.com/tidymodels/broom/issues/490'>#490</a>)</li>
@@ -302,18 +304,18 @@
 </div>
 </div>
 </div>
-    <div id="broom-0-5-1" class="section level1">
+    <div id="broom-051" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-5-1" class="anchor"></a>broom 0.5.1<small> 2018-12-05 </small>
+<a href="#broom-051" class="anchor"></a>broom 0.5.1<small> 2018-12-05 </small>
 </h1>
 <ul>
 <li>
 <code><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy()</a></code>, <code><a href="https://rdrr.io/pkg/generics/man/glance.html">glance()</a></code> and <code><a href="https://rdrr.io/pkg/generics/man/augment.html">augment()</a></code> are now re-exported from the <a href="https://github.com/r-lib/generics">generics</a> package.</li>
 </ul>
 </div>
-    <div id="broom-0-5-0" class="section level1">
+    <div id="broom-050" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-5-0" class="anchor"></a>broom 0.5.0<small> 2018-07-17 </small>
+<a href="#broom-050" class="anchor"></a>broom 0.5.0<small> 2018-07-17 </small>
 </h1>
 <p>Tidiers now return <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble::tibble()</a></code>s. This release also includes several new tidiers, new vignettes and a large number of bugfixes. We’ve also begun to more rigorously define tidier specifications: we’ve laid part of the groundwork for stricter and more consistent tidying, but the new tidier specifications are not yet complete. These will appear in the next release.</p>
 <p>Additionally, users should note that we are in the process of migrating tidying methods for mixed models and Bayesian models to <code>broom.mixed</code>. <code>broom.mixed</code> is not on CRAN yet, but all mixed model and Bayesian tidiers will be deprecated once <code>broom.mixed</code> is on CRAN. No further development of mixed model tidiers will take place in <code>broom</code>.</p>
@@ -322,12 +324,12 @@
 <a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
 <p>Almost all tidiers should now return <code>tibble</code>s rather than <code>data.frame</code>s. Deprecated tidying methods, Bayesian and mixed model tidiers still return <code>data.frame</code>s.</p>
 <p><strong>Users</strong> are mostly to experience issues when using <code>augment</code> in situations where tibbles are stricter than data frames. For example, specifying model covariates as a matrix object will now error:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(broom)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(quantreg)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">fit &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/quantreg/man/rq.html">rq</a></span>(stack.loss <span class="op">~</span><span class="st"> </span>stack.x, <span class="dt">tau =</span> <span class="fl">.5</span>)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">broom<span class="op">::</span><span class="kw"><a href="http://broom.tidyverse.org/reference/reexports.html">augment</a></span>(fit)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; Error: Column `stack.x` must be a 1d atomic vector or a list</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(broom)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(quantreg)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>fit &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/quantreg/man/rq.html">rq</a></span>(stack.loss <span class="op">~</span><span class="st"> </span>stack.x, <span class="dt">tau =</span> <span class="fl">.5</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>broom<span class="op">::</span><span class="kw"><a href="http://broom.tidyverse.org/reference/reexports.html">augment</a></span>(fit)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; Error: Column `stack.x` must be a 1d atomic vector or a list</span></span></code></pre></div>
 <p>This is because the default <code>data</code> argument <code>data = model.frame(fit)</code> cannot be coerced to <code>tibble</code>.</p>
 <p>Another consequence of this is that <code>augment.survreg</code> and <code>augment.coxph</code> from the <code>survival</code> package now require that the user explicitly passes data to either the <code>data</code> or <code>newdata</code> arguments.</p>
 <p>These restrictions will be relaxed in an upcoming release of <code>broom</code> pending support for matrix-columns in tibbles.</p>
@@ -415,18 +417,18 @@
 <p><a href="https://github.com/atyre2">@atyre2</a>, <a href="https://github.com/batpigandme">@batpigandme</a>, <a href="https://github.com/bfgray3">@bfgray3</a>, <a href="https://github.com/bmannakee">@bmannakee</a>, <a href="https://github.com/briatte">@briatte</a>, <a href="https://github.com/cawoodjm">@cawoodjm</a>, <a href="https://github.com/cimentadaj">@cimentadaj</a>, <a href="https://github.com/dan87134">@dan87134</a>, <a href="https://github.com/dgrtwo">@dgrtwo</a>, <a href="https://github.com/dmenne">@dmenne</a>, <a href="https://github.com/ekatko1">@ekatko1</a>, <a href="https://github.com/ellessenne">@ellessenne</a>, <a href="https://github.com/erleholgersen">@erleholgersen</a>, <a href="https://github.com/ethchr">@ethchr</a>, <a href="https://github.com/Hong-Revo">@Hong-Revo</a>, <a href="https://github.com/huftis">@huftis</a>, <a href="https://github.com/IndrajeetPatil">@IndrajeetPatil</a>, <a href="https://github.com/jacob-long">@jacob-long</a>, <a href="https://github.com/jarvisc1">@jarvisc1</a>, <a href="https://github.com/jenzopr">@jenzopr</a>, <a href="https://github.com/jgabry">@jgabry</a>, <a href="https://github.com/jimhester">@jimhester</a>, <a href="https://github.com/josue-rodriguez">@josue-rodriguez</a>, <a href="https://github.com/karldw">@karldw</a>, <a href="https://github.com/kfeilich">@kfeilich</a>, <a href="https://github.com/larmarange">@larmarange</a>, <a href="https://github.com/lboller">@lboller</a>, <a href="https://github.com/mariusbarth">@mariusbarth</a>, <a href="https://github.com/michaelweylandt">@michaelweylandt</a>, <a href="https://github.com/mine-cetinkaya-rundel">@mine-cetinkaya-rundel</a>, <a href="https://github.com/mkuehn10">@mkuehn10</a>, <a href="https://github.com/mvevans89">@mvevans89</a>, <a href="https://github.com/nutterb">@nutterb</a>, <a href="https://github.com/ShreyasSingh">@ShreyasSingh</a>, <a href="https://github.com/stephlocke">@stephlocke</a>, <a href="https://github.com/strengejacke">@strengejacke</a>, <a href="https://github.com/topepo">@topepo</a>, <a href="https://github.com/willbowditch">@willbowditch</a>, <a href="https://github.com/WillemSleegers">@WillemSleegers</a>, <a href="https://github.com/wilsonfreitas">@wilsonfreitas</a>, and <a href="https://github.com/MatthieuStigler">@MatthieuStigler</a></p>
 </div>
 </div>
-    <div id="broom-0-4-4" class="section level1">
+    <div id="broom-044" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-4-4" class="anchor"></a>broom 0.4.4<small> 2018-03-29 </small>
+<a href="#broom-044" class="anchor"></a>broom 0.4.4<small> 2018-03-29 </small>
 </h1>
 <ul>
 <li><p>Fixed gam tidiers to work with “Gam” objects, due to an update in gam 1.15. This fixes failing CRAN tests</p></li>
 <li><p>Improved test coverage (thanks to <a href='https://github.com/tidymodels/broom/issues/267'>#267</a> from Derek Chiu)</p></li>
 </ul>
 </div>
-    <div id="broom-0-4-3" class="section level1">
+    <div id="broom-043" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-4-3" class="anchor"></a>broom 0.4.3<small> 2017-11-20 </small>
+<a href="#broom-043" class="anchor"></a>broom 0.4.3<small> 2017-11-20 </small>
 </h1>
 <ul>
 <li><p>Changed the deprecated <code><a href="https://dplyr.tidyverse.org/reference/failwith.html">dplyr::failwith</a></code> to <code><a href="https://purrr.tidyverse.org/reference/safely.html">purrr::possibly</a></code></p></li>
@@ -443,9 +445,9 @@
 <li><p>Added tidiers for <code>decompose</code> and <code>stl</code> objects from stats (thanks to <a href='https://github.com/tidymodels/broom/issues/165'>#165</a> from Aaron Jacobs)</p></li>
 </ul>
 </div>
-    <div id="broom-0-4-2" class="section level1">
+    <div id="broom-042" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-4-2" class="anchor"></a>broom 0.4.2<small> 2017-02-13 </small>
+<a href="#broom-042" class="anchor"></a>broom 0.4.2<small> 2017-02-13 </small>
 </h1>
 <ul>
 <li><p>Added tidiers for <code>lsmobj</code> and <code>ref.grid</code> objects from the lsmeans package</p></li>
@@ -458,9 +460,9 @@
 <li><p>Fixed issue with survival package 2.40-1 (thanks to <a href='https://github.com/tidymodels/broom/issues/180'>#180</a> from Marcus Walz)</p></li>
 </ul>
 </div>
-    <div id="broom-0-4-1" class="section level1">
+    <div id="broom-041" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-4-1" class="anchor"></a>broom 0.4.1<small> 2016-06-24 </small>
+<a href="#broom-041" class="anchor"></a>broom 0.4.1<small> 2016-06-24 </small>
 </h1>
 <ul>
 <li><p>Added AppVeyor, codecov.io, and code of conduct</p></li>
@@ -479,9 +481,9 @@
 <li><p>Fixed to be compatible with dplyr 0.5, which is being submitted to CRAN</p></li>
 </ul>
 </div>
-    <div id="broom-0-4-0" class="section level1">
+    <div id="broom-040" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-4-0" class="anchor"></a>broom 0.4.0<small> 2015-11-30 </small>
+<a href="#broom-040" class="anchor"></a>broom 0.4.0<small> 2015-11-30 </small>
 </h1>
 <ul>
 <li><p>Added tidiers for geeglm, nlrq, roc, boot, bgterm, kappa, binWidth, binDesign, rcorr, stanfit, rjags, gamlss, and mle2 objects.</p></li>
@@ -493,9 +495,9 @@
 <li><p>Fixed issues in tests caused by dev version of ggplot2</p></li>
 </ul>
 </div>
-    <div id="broom-0-3-7" class="section level1">
+    <div id="broom-037" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-3-7" class="anchor"></a>broom 0.3.7<small> 2015-05-06 </small>
+<a href="#broom-037" class="anchor"></a>broom 0.3.7<small> 2015-05-06 </small>
 </h1>
 <ul>
 <li><p>Added tidiers for “plm” (panel linear model) objects from the plm package.</p></li>
@@ -509,21 +511,21 @@
 <li><p>Added <code>tidy</code> and <code>glance</code> for <code>multinom</code> objects from the nnet package.</p></li>
 </ul>
 </div>
-    <div id="broom-0-3-6" class="section level1">
+    <div id="broom-036" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-3-6" class="anchor"></a>broom 0.3.6<small> 2015-02-18 </small>
+<a href="#broom-036" class="anchor"></a>broom 0.3.6<small> 2015-02-18 </small>
 </h1>
 <ul>
 <li><p>Fixed bug in <code>tidy.pairwise.htest</code>, which now can handle cases where the grouping variable is numeric.</p></li>
 <li><p>Added <code>tidy.aovlist</code> method. This added <code>stringr</code> package to IMPORTS to trim whitespace from the beginning and end of the <code>term</code> and <code>stratum</code> columns. This also required adjusting <code>tidy.aov</code> so that it could handle strata that are missing p-values.</p></li>
 <li><p>Set up <code>glance.lm</code> to work with <code>aov</code> objects along with <code>lm</code> objects.</p></li>
 <li><p>Added <code>tidy</code> and <code>glance</code> for matrix objects, with <code>tidy.matrix</code> converting a matrix to a data frame with rownames included, and <code>glance.matrix</code> returning the same result as <code>glance.data.frame</code>.</p></li>
-<li><p>Changed DESCRIPTION <a href="mailto:Authors@R">Authors@R</a> to new format</p></li>
+<li><p>Changed DESCRIPTION <a href="mailto:Authors@R" class="email">Authors@R</a> to new format</p></li>
 </ul>
 </div>
-    <div id="broom-0-3-5" class="section level1">
+    <div id="broom-035" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-3-5" class="anchor"></a>broom 0.3.5<small> 2015-01-05 </small>
+<a href="#broom-035" class="anchor"></a>broom 0.3.5<small> 2015-01-05 </small>
 </h1>
 <ul>
 <li><p>Fixed small bug in <code>felm</code> where the <code>.fitted</code> and <code>.resid</code> columns were matrices rather than vectors.</p></li>
@@ -531,9 +533,9 @@
 <li><p>Removed rownames from <code>tidy.cv.glmnet</code> output</p></li>
 </ul>
 </div>
-    <div id="broom-0-3-4" class="section level1">
+    <div id="broom-034" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-3-4" class="anchor"></a>broom 0.3.4<small> 2014-11-23 </small>
+<a href="#broom-034" class="anchor"></a>broom 0.3.4<small> 2014-11-23 </small>
 </h1>
 <ul>
 <li>
@@ -561,9 +563,9 @@
 <li><p>This is the original version published on CRAN.</p></li>
 </ul>
 </div>
-    <div id="broom-0-3" class="section level1">
+    <div id="broom-03" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-3" class="anchor"></a>broom 0.3<small> Unreleased </small>
+<a href="#broom-03" class="anchor"></a>broom 0.3<small> Unreleased </small>
 </h1>
 <ul>
 <li>
@@ -582,9 +584,9 @@
 <li><p>A function <code>bootstrap</code> has been added based on <a href="https://github.com/hadley/dplyr/issues/269">this example</a>, to perform the common use case of bootstrapping models.</p></li>
 </ul>
 </div>
-    <div id="broom-0-2" class="section level1">
+    <div id="broom-02" class="section level1">
 <h1 class="page-header">
-<a href="#broom-0-2" class="anchor"></a>broom 0.2<small> Unreleased </small>
+<a href="#broom-02" class="anchor"></a>broom 0.2<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>Added “augment” S3 generic and various implementations. “augment” does something different from tidy: it adds columns to the original dataset, including predictions, residuals, or cluster assignments. This was originally described as “fortify” in ggplot2.</p></li>
@@ -597,24 +599,24 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#broom-0-5-3-9000">0.5.3.9000</a></li>
-        <li><a href="#broom-0-5-1">0.5.1</a></li>
-        <li><a href="#broom-0-5-0">0.5.0</a></li>
-        <li><a href="#broom-0-4-4">0.4.4</a></li>
-        <li><a href="#broom-0-4-3">0.4.3</a></li>
-        <li><a href="#broom-0-4-2">0.4.2</a></li>
-        <li><a href="#broom-0-4-1">0.4.1</a></li>
-        <li><a href="#broom-0-4-0">0.4.0</a></li>
-        <li><a href="#broom-0-3-7">0.3.7</a></li>
-        <li><a href="#broom-0-3-6">0.3.6</a></li>
-        <li><a href="#broom-0-3-5">0.3.5</a></li>
-        <li><a href="#broom-0-3-4">0.3.4</a></li>
-        <li><a href="#broom-0-3">0.3</a></li>
-        <li><a href="#broom-0-2">0.2</a></li>
+        <li><a href="#broom-0539000">0.5.3.9000</a></li>
+        <li><a href="#broom-051">0.5.1</a></li>
+        <li><a href="#broom-050">0.5.0</a></li>
+        <li><a href="#broom-044">0.4.4</a></li>
+        <li><a href="#broom-043">0.4.3</a></li>
+        <li><a href="#broom-042">0.4.2</a></li>
+        <li><a href="#broom-041">0.4.1</a></li>
+        <li><a href="#broom-040">0.4.0</a></li>
+        <li><a href="#broom-037">0.3.7</a></li>
+        <li><a href="#broom-036">0.3.6</a></li>
+        <li><a href="#broom-035">0.3.5</a></li>
+        <li><a href="#broom-034">0.3.4</a></li>
+        <li><a href="#broom-03">0.3</a></li>
+        <li><a href="#broom-02">0.2</a></li>
       </ul>
     </div>
   </div>

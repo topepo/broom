@@ -48,7 +48,7 @@
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@
     <div class="page-header toc-ignore">
       <h1>kmeans with dplyr and broom</h1>
             
-            <h4 class="date">2019-12-14</h4>
+            <h4 class="date">2020-02-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tidymodels/broom/blob/master/vignettes/kmeans.Rmd"><code>vignettes/kmeans.Rmd</code></a></small>
       <div class="hidden name"><code>kmeans.Rmd</code></div>
@@ -125,38 +125,38 @@
 <a href="#tidying-k-means-clustering" class="anchor"></a>Tidying k-means clustering</h1>
 <p>K-means clustering serves as a very useful example of tidy data, and especially the distinction between the three tidying functions: <code>tidy</code>, <code>augment</code>, and <code>glance</code>.</p>
 <p>Let’s start by generating some random two-dimensional data with three clusters. Data in each cluster will come from a multivariate gaussian distribution, with different means for each cluster:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(purrr)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tibble)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyr)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">27</span>)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">centers &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">cluster =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="dt">num_points =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">50</span>),  <span class="co"># number points in each cluster</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">  <span class="dt">x1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">-3</span>),              <span class="co"># x1 coordinate of cluster center</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">  <span class="dt">x2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-2</span>)              <span class="co"># x2 coordinate of cluster center</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">)</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">labelled_points &lt;-<span class="st"> </span>centers <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">    <span class="dt">x1 =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(num_points, x1, rnorm),</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">    <span class="dt">x2 =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(num_points, x2, rnorm)</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>num_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(x1, x2)</a>
-<a class="sourceLine" id="cb1-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(labelled_points, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, x2, <span class="dt">color =</span> cluster)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(purrr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tibble)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyr)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">27</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>centers &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="dt">cluster =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="dt">num_points =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">50</span>),  <span class="co"># number points in each cluster</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="dt">x1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">-3</span>),              <span class="co"># x1 coordinate of cluster center</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="dt">x2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-2</span>)              <span class="co"># x2 coordinate of cluster center</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>labelled_points &lt;-<span class="st"> </span>centers <span class="op">%&gt;%</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="dt">x1 =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(num_points, x1, rnorm),</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="dt">x2 =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(num_points, x2, rnorm)</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>num_points) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(x1, x2)</span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(labelled_points, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, x2, <span class="dt">color =</span> cluster)) <span class="op">+</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</span></code></pre></div>
 <p><img src="kmeans_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 <p>This is an ideal case for k-means clustering. We’ll use the built-in <code>kmeans</code> function, which accepts a dataframe with all numeric columns as it’s primary argument.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">points &lt;-<span class="st"> </span>labelled_points <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>cluster)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">kclust &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span>(points, <span class="dt">centers =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">kclust</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>points &lt;-<span class="st"> </span>labelled_points <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>cluster)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>kclust &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span>(points, <span class="dt">centers =</span> <span class="dv">3</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>kclust</span></code></pre></div>
 <pre><code>## K-means clustering with 3 clusters of sizes 148, 51, 101
 ## 
 ## Cluster means:
@@ -184,7 +184,7 @@
 ## 
 ## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
 ## [6] "betweenss"    "size"         "iter"         "ifault"</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(kclust)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(kclust)</span></code></pre></div>
 <pre><code>##              Length Class  Mode   
 ## cluster      300    -none- numeric
 ## centers        6    -none- numeric
@@ -209,9 +209,9 @@
 </li>
 </ul>
 <p>Which of these do we want to extract? There is no right answer: each of them may be interesting to an analyst. Because they communicate entirely different information (not to mention there’s no straightforward way to combine them), they are extracted by separate functions. <code>augment</code> adds the point classifications to the original dataset:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(broom)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/pkg/generics/man/augment.html">augment</a></span>(kclust, points)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(broom)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw"><a href="https://rdrr.io/pkg/generics/man/augment.html">augment</a></span>(kclust, points)</span></code></pre></div>
 <pre><code>## # A tibble: 300 x 3
 ##       x1     x2 .cluster
 ##    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;   
@@ -227,7 +227,7 @@
 ## 10  5.24 -2.42  3       
 ## # … with 290 more rows</code></pre>
 <p>The <code>tidy</code> function summarizes on a per-cluster level:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span>(kclust)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span>(kclust)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##        x1    x2  size withinss cluster
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;fct&gt;  
@@ -235,7 +235,7 @@
 ## 2 -3.14   -2.00    51     109. 2      
 ## 3  5.00   -1.05   101     243. 3</code></pre>
 <p>And as it always does, the <code>glance</code> function extracts a single-row summary:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/generics/man/glance.html">glance</a></span>(kclust)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://rdrr.io/pkg/generics/man/glance.html">glance</a></span>(kclust)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   totss tot.withinss betweenss  iter
 ##   &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
@@ -245,15 +245,15 @@
 <a href="#broom-and-dplyr-for-exploratory-clustering" class="anchor"></a>broom and dplyr for exploratory clustering</h2>
 <p>While these summaries are useful, they would not have been too difficult to extract out from the dataset yourself. The real power comes from combining these analyses with dplyr.</p>
 <p>Let’s say we want to explore the effect of different choices of <code>k</code>, from 1 to 9, on this clustering. First cluster the data 9 times, each using a different value of <code>k</code>, then create columns containing the tidied, glanced and augmented data:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">kclusts &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="dt">kclust =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(k, <span class="op">~</span><span class="kw"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span>(points, .x)),</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">    <span class="dt">tidied =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(kclust, tidy),</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">    <span class="dt">glanced =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(kclust, glance),</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">    <span class="dt">augmented =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(kclust, augment, points)</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">kclusts</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>kclusts &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="dt">kclust =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(k, <span class="op">~</span><span class="kw"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span>(points, .x)),</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="dt">tidied =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(kclust, tidy),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="dt">glanced =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(kclust, glance),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="dt">augmented =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(kclust, augment, points)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>  )</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>kclusts</span></code></pre></div>
 <pre><code>## # A tibble: 9 x 5
 ##       k kclust   tidied           glanced          augmented         
 ##   &lt;int&gt; &lt;list&gt;   &lt;list&gt;           &lt;list&gt;           &lt;list&gt;            
@@ -267,34 +267,34 @@
 ## 8     8 &lt;kmeans&gt; &lt;tibble [8 × 5]&gt; &lt;tibble [1 × 4]&gt; &lt;tibble [300 × 3]&gt;
 ## 9     9 &lt;kmeans&gt; &lt;tibble [9 × 5]&gt; &lt;tibble [1 × 4]&gt; &lt;tibble [300 × 3]&gt;</code></pre>
 <p>We can turn these into three separate datasets each representing a different type of data: Then tidy the clusterings three ways: using <code>tidy</code>, using <code>augment</code>, and using <code>glance</code>. Each of these goes into a separate dataset as they represent different types of data.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">clusters &lt;-<span class="st"> </span>kclusts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(tidied)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">assignments &lt;-<span class="st"> </span>kclusts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(augmented)</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">clusterings &lt;-<span class="st"> </span>kclusts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(glanced, <span class="dt">.drop =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>clusters &lt;-<span class="st"> </span>kclusts <span class="op">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(tidied)</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a>assignments &lt;-<span class="st"> </span>kclusts <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(augmented)</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a>clusterings &lt;-<span class="st"> </span>kclusts <span class="op">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span>(glanced, <span class="dt">.drop =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Now we can plot the original points, with each point colored according to the predicted cluster.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(assignments, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, x2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">color =</span> .cluster)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>k)</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">p1</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(assignments, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, x2)) <span class="op">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">color =</span> .cluster)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>k)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>p1</span></code></pre></div>
 <p><img src="kmeans_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Already we get a good sense of the proper number of clusters (3), and how the k-means algorithm functions when k is too high or too low. We can then add the centers of the cluster using the data from <code>tidy</code>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">p2 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">data =</span> clusters, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">shape =</span> <span class="st">"x"</span>)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">p2</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>p2 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">data =</span> clusters, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">shape =</span> <span class="st">"x"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>p2</span></code></pre></div>
 <p><img src="kmeans_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>The data from <code>glance</code> fits a different but equally important purpose: it lets you view trends of some summary statistics across values of k. Of particular interest is the total within sum of squares, saved in the <code>tot.withinss</code> column.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(clusterings, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(k, tot.withinss)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(clusterings, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(k, tot.withinss)) <span class="op">+</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</span></code></pre></div>
 <p><img src="kmeans_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>This represents the variance within the clusters. It decreases as <code>k</code> increases, but one can notice a bend (or “elbow”) right at k=3. This bend indicates that additional clusters beyond the third have little value. (See <a href="http://web.stanford.edu/~hastie/Papers/gap.pdf">here</a> for a more mathematically rigorous interpretation and implementation of this method). Thus, all three methods of tidying data provided by broom are useful for summarizing clustering output.</p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
         <div id="tocnav">
       <h2 class="hasAnchor">

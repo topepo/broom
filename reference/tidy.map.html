@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -205,39 +205,39 @@ the <code>data</code> argument.</p></td>
 #&gt; <span class='message'>    map</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 
 <span class='no'>ca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/maps/man/map.html'>map</a></span>(<span class='st'>"county"</span>, <span class='st'>"ca"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>ca</span>)</div><div class='output co'>#&gt; # A tibble: 2,977 x 7
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>ca</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2,977 x 7</span><span>
 #&gt;    term   long   lat group order region     subregion
-#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;    
-#&gt;  1 1     -121.  37.5     1     1 california alameda  
-#&gt;  2 2     -122.  37.5     1     2 california alameda  
-#&gt;  3 3     -122.  37.5     1     3 california alameda  
-#&gt;  4 4     -122.  37.5     1     4 california alameda  
-#&gt;  5 5     -122.  37.5     1     5 california alameda  
-#&gt;  6 6     -122.  37.5     1     6 california alameda  
-#&gt;  7 7     -122.  37.5     1     7 california alameda  
-#&gt;  8 8     -122.  37.5     1     8 california alameda  
-#&gt;  9 9     -122.  37.5     1     9 california alameda  
-#&gt; 10 10    -122.  37.5     1    10 california alameda  
-#&gt; # … with 2,967 more rows</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span>(<span class='no'>long</span>, <span class='no'>lat</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ca</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"polygon"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>group</span>)</div><div class='img'><img src='tidy.map-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1     -</span><span style='color: #BB0000;'>121.</span><span>  37.5     1     1 california alameda  
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     2 california alameda  
+#&gt; </span><span style='color: #555555;'> 3</span><span> 3     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     3 california alameda  
+#&gt; </span><span style='color: #555555;'> 4</span><span> 4     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     4 california alameda  
+#&gt; </span><span style='color: #555555;'> 5</span><span> 5     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     5 california alameda  
+#&gt; </span><span style='color: #555555;'> 6</span><span> 6     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     6 california alameda  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 7     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     7 california alameda  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 8     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     8 california alameda  
+#&gt; </span><span style='color: #555555;'> 9</span><span> 9     -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1     9 california alameda  
+#&gt; </span><span style='color: #555555;'>10</span><span> 10    -</span><span style='color: #BB0000;'>122.</span><span>  37.5     1    10 california alameda  
+#&gt; </span><span style='color: #555555;'># … with 2,967 more rows</span><span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span>(<span class='no'>long</span>, <span class='no'>lat</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ca</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"polygon"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>group</span>)</div><div class='img'><img src='tidy.map-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>tx</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/maps/man/map.html'>map</a></span>(<span class='st'>"county"</span>, <span class='st'>"texas"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>tx</span>)</div><div class='output co'>#&gt; # A tibble: 4,488 x 7
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>tx</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4,488 x 7</span><span>
 #&gt;    term   long   lat group order region subregion
-#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;    
-#&gt;  1 1     -95.8  31.5     1     1 texas  anderson 
-#&gt;  2 2     -95.8  31.6     1     2 texas  anderson 
-#&gt;  3 3     -95.8  31.6     1     3 texas  anderson 
-#&gt;  4 4     -95.7  31.6     1     4 texas  anderson 
-#&gt;  5 5     -95.7  31.6     1     5 texas  anderson 
-#&gt;  6 6     -95.7  31.6     1     6 texas  anderson 
-#&gt;  7 7     -95.8  31.7     1     7 texas  anderson 
-#&gt;  8 8     -95.8  31.7     1     8 texas  anderson 
-#&gt;  9 9     -95.8  31.6     1     9 texas  anderson 
-#&gt; 10 10    -95.8  31.6     1    10 texas  anderson 
-#&gt; # … with 4,478 more rows</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span>(<span class='no'>long</span>, <span class='no'>lat</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>tx</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"polygon"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>group</span>,
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1     -</span><span style='color: #BB0000;'>95.8</span><span>  31.5     1     1 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2     -</span><span style='color: #BB0000;'>95.8</span><span>  31.6     1     2 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 3</span><span> 3     -</span><span style='color: #BB0000;'>95.8</span><span>  31.6     1     3 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 4</span><span> 4     -</span><span style='color: #BB0000;'>95.7</span><span>  31.6     1     4 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 5</span><span> 5     -</span><span style='color: #BB0000;'>95.7</span><span>  31.6     1     5 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 6</span><span> 6     -</span><span style='color: #BB0000;'>95.7</span><span>  31.6     1     6 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 7</span><span> 7     -</span><span style='color: #BB0000;'>95.8</span><span>  31.7     1     7 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 8</span><span> 8     -</span><span style='color: #BB0000;'>95.8</span><span>  31.7     1     8 texas  anderson 
+#&gt; </span><span style='color: #555555;'> 9</span><span> 9     -</span><span style='color: #BB0000;'>95.8</span><span>  31.6     1     9 texas  anderson 
+#&gt; </span><span style='color: #555555;'>10</span><span> 10    -</span><span style='color: #BB0000;'>95.8</span><span>  31.6     1    10 texas  anderson 
+#&gt; </span><span style='color: #555555;'># … with 4,478 more rows</span><span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span>(<span class='no'>long</span>, <span class='no'>lat</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>tx</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"polygon"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>group</span>,
       <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='st'>"white"</span>))</div><div class='img'><img src='tidy.map-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

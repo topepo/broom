@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -234,28 +234,28 @@ the <code>data</code> argument.</p></td>
   <span class='no'>two_class_sample2</span>
 )
 
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>two_class_cm</span>)</div><div class='output co'>#&gt; # A tibble: 14 x 6
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>two_class_cm</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 6</span><span>
 #&gt;    term                 class estimate conf.low conf.high p.value
-#&gt;    &lt;chr&gt;                &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 accuracy             &lt;NA&gt;    0.52      0.418     0.621   0.619
-#&gt;  2 kappa                &lt;NA&gt;    0.0295   NA        NA      NA    
-#&gt;  3 mcnemar              &lt;NA&gt;   NA        NA        NA       0.470
-#&gt;  4 sensitivity          a       0.604    NA        NA      NA    
-#&gt;  5 specificity          a       0.426    NA        NA      NA    
-#&gt;  6 pos_pred_value       a       0.542    NA        NA      NA    
-#&gt;  7 neg_pred_value       a       0.488    NA        NA      NA    
-#&gt;  8 precision            a       0.542    NA        NA      NA    
-#&gt;  9 recall               a       0.604    NA        NA      NA    
-#&gt; 10 f1                   a       0.571    NA        NA      NA    
-#&gt; 11 prevalence           a       0.53     NA        NA      NA    
-#&gt; 12 detection_rate       a       0.32     NA        NA      NA    
-#&gt; 13 detection_prevalence a       0.59     NA        NA      NA    
-#&gt; 14 balanced_accuracy    a       0.515    NA        NA      NA    </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>two_class_cm</span>, <span class='kw'>by_class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 5
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> accuracy             </span><span style='color: #BB0000;'>NA</span><span>      0.52      0.418     0.621   0.619
+#&gt; </span><span style='color: #555555;'> 2</span><span> kappa                </span><span style='color: #BB0000;'>NA</span><span>      0.029</span><span style='text-decoration: underline;'>5</span><span>   </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 3</span><span> mcnemar              </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       0.470
+#&gt; </span><span style='color: #555555;'> 4</span><span> sensitivity          a       0.604    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 5</span><span> specificity          a       0.426    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 6</span><span> pos_pred_value       a       0.542    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 7</span><span> neg_pred_value       a       0.488    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 8</span><span> precision            a       0.542    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 9</span><span> recall               a       0.604    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>10</span><span> f1                   a       0.571    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>11</span><span> prevalence           a       0.53     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>12</span><span> detection_rate       a       0.32     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>13</span><span> detection_prevalence a       0.59     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>14</span><span> balanced_accuracy    a       0.515    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>two_class_cm</span>, <span class='kw'>by_class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   term     estimate conf.low conf.high p.value
-#&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 accuracy   0.52      0.418     0.621   0.619
-#&gt; 2 kappa      0.0295   NA        NA      NA    
-#&gt; 3 mcnemar   NA        NA        NA       0.470</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> accuracy   0.52      0.418     0.621   0.619
+#&gt; </span><span style='color: #555555;'>2</span><span> kappa      0.029</span><span style='text-decoration: underline;'>5</span><span>   </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>3</span><span> mcnemar   </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       0.470</div><div class='input'>
 <span class='co'># multiclass example</span>
 
 <span class='no'>six_class_sample1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>6</span>], <span class='fl'>100</span>, <span class='fl'>TRUE</span>))
@@ -266,28 +266,28 @@ the <code>data</code> argument.</p></td>
   <span class='no'>six_class_sample2</span>
 )
 
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>six_class_cm</span>)</div><div class='output co'>#&gt; # A tibble: 69 x 6
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>six_class_cm</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 69 x 6</span><span>
 #&gt;    term        class estimate conf.low conf.high p.value
-#&gt;    &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 accuracy    &lt;NA&gt;    0.2       0.127     0.292   0.795
-#&gt;  2 kappa       &lt;NA&gt;    0.0351   NA        NA      NA    
-#&gt;  3 mcnemar     &lt;NA&gt;   NA        NA        NA       0.873
-#&gt;  4 sensitivity a       0.2      NA        NA      NA    
-#&gt;  5 sensitivity b       0.286    NA        NA      NA    
-#&gt;  6 sensitivity c       0.133    NA        NA      NA    
-#&gt;  7 sensitivity d       0.133    NA        NA      NA    
-#&gt;  8 sensitivity e       0.231    NA        NA      NA    
-#&gt;  9 sensitivity f       0.217    NA        NA      NA    
-#&gt; 10 specificity a       0.888    NA        NA      NA    
-#&gt; # … with 59 more rows</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>six_class_cm</span>, <span class='kw'>by_class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 5
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> accuracy    </span><span style='color: #BB0000;'>NA</span><span>      0.2       0.127     0.292   0.795
+#&gt; </span><span style='color: #555555;'> 2</span><span> kappa       </span><span style='color: #BB0000;'>NA</span><span>      0.035</span><span style='text-decoration: underline;'>1</span><span>   </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 3</span><span> mcnemar     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       0.873
+#&gt; </span><span style='color: #555555;'> 4</span><span> sensitivity a       0.2      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 5</span><span> sensitivity b       0.286    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 6</span><span> sensitivity c       0.133    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 7</span><span> sensitivity d       0.133    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 8</span><span> sensitivity e       0.231    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'> 9</span><span> sensitivity f       0.217    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>10</span><span> specificity a       0.888    </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'># … with 59 more rows</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>six_class_cm</span>, <span class='kw'>by_class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   term     estimate conf.low conf.high p.value
-#&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 accuracy   0.2       0.127     0.292   0.795
-#&gt; 2 kappa      0.0351   NA        NA      NA    
-#&gt; 3 mcnemar   NA        NA        NA       0.873</div><div class='input'>
-</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> accuracy   0.2       0.127     0.292   0.795
+#&gt; </span><span style='color: #555555;'>2</span><span> kappa      0.035</span><span style='text-decoration: underline;'>1</span><span>   </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #555555;'>3</span><span> mcnemar   </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       0.873</div><div class='input'>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -219,39 +219,39 @@ the <code>data</code> argument.</p></td>
 <span class='no'>amod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span>(<span class='no'>breaks</span> ~ <span class='no'>wool</span> + <span class='no'>tension</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>warpbreaks</span>)
 <span class='no'>wht</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/multcomp/man/glht.html'>glht</a></span>(<span class='no'>amod</span>, <span class='kw'>linfct</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/multcomp/man/glht.html'>mcp</a></span>(<span class='kw'>tension</span> <span class='kw'>=</span> <span class='st'>"Tukey"</span>))
 
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>wht</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 3
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>wht</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 3</span><span>
 #&gt;   lhs     rhs estimate
-#&gt;   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 M - L     0   -10.  
-#&gt; 2 H - L     0   -14.7 
-#&gt; 3 H - M     0    -4.72</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wht</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>lhs</span>, <span class='no'>estimate</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()</div><div class='img'><img src='tidy.confint.glht-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> M - L     0   -</span><span style='color: #BB0000;'>10.</span><span>  
+#&gt; </span><span style='color: #555555;'>2</span><span> H - L     0   -</span><span style='color: #BB0000;'>14.7</span><span> 
+#&gt; </span><span style='color: #555555;'>3</span><span> H - M     0    -</span><span style='color: #BB0000;'>4.72</span><span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wht</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>lhs</span>, <span class='no'>estimate</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()</div><div class='img'><img src='tidy.confint.glht-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>CI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/confint.html'>confint</a></span>(<span class='no'>wht</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>CI</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 5
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>CI</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   lhs     rhs estimate conf.low conf.high
-#&gt;   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 M - L     0   -10.      -19.4    -0.648
-#&gt; 2 H - L     0   -14.7     -24.1    -5.37 
-#&gt; 3 H - M     0    -4.72    -14.1     4.63 </div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>CI</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>lhs</span>, <span class='no'>estimate</span>, <span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>lwr</span>, <span class='kw'>ymax</span> <span class='kw'>=</span> <span class='no'>upr</span>)) +
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> M - L     0   -</span><span style='color: #BB0000;'>10.</span><span>      -</span><span style='color: #BB0000;'>19.4</span><span>    -</span><span style='color: #BB0000;'>0.648</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> H - L     0   -</span><span style='color: #BB0000;'>14.7</span><span>     -</span><span style='color: #BB0000;'>24.1</span><span>    -</span><span style='color: #BB0000;'>5.37</span><span> 
+#&gt; </span><span style='color: #555555;'>3</span><span> H - M     0    -</span><span style='color: #BB0000;'>4.72</span><span>    -</span><span style='color: #BB0000;'>14.1</span><span>     4.63 </div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>CI</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>lhs</span>, <span class='no'>estimate</span>, <span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>lwr</span>, <span class='kw'>ymax</span> <span class='kw'>=</span> <span class='no'>upr</span>)) +
    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>geom_pointrange</a></span>()</div><div class='img'><img src='tidy.confint.glht-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>wht</span>))</div><div class='output co'>#&gt; # A tibble: 3 x 6
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>wht</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 6</span><span>
 #&gt;   lhs     rhs estimate std.error statistic p.value
-#&gt;   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 M - L     0   -10.        3.87     -2.58 0.0335 
-#&gt; 2 H - L     0   -14.7       3.87     -3.80 0.00115
-#&gt; 3 H - M     0    -4.72      3.87     -1.22 0.447  </div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>mapping</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>lhs</span>, <span class='no'>estimate</span>)) +
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> M - L     0   -</span><span style='color: #BB0000;'>10.</span><span>        3.87     -</span><span style='color: #BB0000;'>2.58</span><span> 0.033</span><span style='text-decoration: underline;'>5</span><span> 
+#&gt; </span><span style='color: #555555;'>2</span><span> H - L     0   -</span><span style='color: #BB0000;'>14.7</span><span>       3.87     -</span><span style='color: #BB0000;'>3.80</span><span> 0.001</span><span style='text-decoration: underline;'>15</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> H - M     0    -</span><span style='color: #BB0000;'>4.72</span><span>      3.87     -</span><span style='color: #BB0000;'>1.22</span><span> 0.447  </div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>mapping</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>lhs</span>, <span class='no'>estimate</span>)) +
    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>geom_linerange</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>lwr</span>, <span class='kw'>ymax</span> <span class='kw'>=</span> <span class='no'>upr</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>CI</span>) +
    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>p</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>wht</span>)) +
    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_size.html'>scale_size</a></span>(<span class='kw'>trans</span> <span class='kw'>=</span> <span class='st'>"reverse"</span>)</div><div class='img'><img src='tidy.confint.glht-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>cld</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/multcomp/man/cld.html'>cld</a></span>(<span class='no'>wht</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>cld</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>cld</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
 #&gt;   lhs   letters
-#&gt;   &lt;chr&gt; &lt;chr&gt;  
-#&gt; 1 L     b      
-#&gt; 2 M     a      
-#&gt; 3 H     a      </div><div class='input'>
-</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>1</span><span> L     b      
+#&gt; </span><span style='color: #555555;'>2</span><span> M     a      
+#&gt; </span><span style='color: #555555;'>3</span><span> H     a      </div><div class='input'>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

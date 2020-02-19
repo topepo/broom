@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -216,31 +216,31 @@ the <code>data</code> argument.</p></td>
     <pre class="examples"><div class='input'>
 <span class='no'>fm1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span>(<span class='no'>breaks</span> ~ <span class='no'>wool</span> + <span class='no'>tension</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>warpbreaks</span>)
 <span class='no'>thsd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/TukeyHSD.html'>TukeyHSD</a></span>(<span class='no'>fm1</span>, <span class='st'>"tension"</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>thsd</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 6
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>thsd</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 6</span><span>
 #&gt;   term    comparison estimate conf.low conf.high adj.p.value
-#&gt;   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-#&gt; 1 tension M-H            4.72   -4.63       14.1     0.447  
-#&gt; 2 tension L-H           14.7     5.37       24.1     0.00112
-#&gt; 3 tension L-M           10.      0.647      19.4     0.0336 </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> tension M-H            4.72   -</span><span style='color: #BB0000;'>4.63</span><span>       14.1     0.447  
+#&gt; </span><span style='color: #555555;'>2</span><span> tension L-H           14.7     5.37       24.1     0.001</span><span style='text-decoration: underline;'>12</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> tension L-M           10.      0.647      19.4     0.033</span><span style='text-decoration: underline;'>6</span><span> </div><div class='input'>
 <span class='co'># may include comparisons on multiple terms</span>
 <span class='no'>fm2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span>(<span class='no'>mpg</span> ~ <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='no'>gear</span>) * <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='no'>cyl</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/TukeyHSD.html'>TukeyHSD</a></span>(<span class='no'>fm2</span>))</div><div class='output co'>#&gt; # A tibble: 42 x 6
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/TukeyHSD.html'>TukeyHSD</a></span>(<span class='no'>fm2</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 42 x 6</span><span>
 #&gt;    term                       comparison estimate conf.low conf.high adj.p.value
-#&gt;    &lt;chr&gt;                      &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-#&gt;  1 as.factor(gear)            4-3           8.43     5.19      11.7   0.00000297
-#&gt;  2 as.factor(gear)            5-3           5.27     0.955      9.59  0.0147    
-#&gt;  3 as.factor(gear)            5-4          -3.15    -7.60       1.30  0.201     
-#&gt;  4 as.factor(cyl)             6-4          -5.40    -9.45      -1.36  0.00748   
-#&gt;  5 as.factor(cyl)             8-4          -5.23    -8.60      -1.86  0.00201   
-#&gt;  6 as.factor(cyl)             8-6           0.172   -3.70       4.04  0.993     
-#&gt;  7 as.factor(gear):as.factor… 4:4-3:4       5.42    -6.65      17.5   0.832     
-#&gt;  8 as.factor(gear):as.factor… 5:4-3:4       6.70    -7.24      20.6   0.778     
-#&gt;  9 as.factor(gear):as.factor… 3:6-3:4      -1.75   -15.7       12.2   1.000     
-#&gt; 10 as.factor(gear):as.factor… 4:6-3:4      -1.75   -14.5       11.0   1.000     
-#&gt; # … with 32 more rows</div><div class='input'>
-</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> as.factor(gear)            4-3           8.43     5.19      11.7   0.000</span><span style='text-decoration: underline;'>002</span><span>97
+#&gt; </span><span style='color: #555555;'> 2</span><span> as.factor(gear)            5-3           5.27     0.955      9.59  0.014</span><span style='text-decoration: underline;'>7</span><span>    
+#&gt; </span><span style='color: #555555;'> 3</span><span> as.factor(gear)            5-4          -</span><span style='color: #BB0000;'>3.15</span><span>    -</span><span style='color: #BB0000;'>7.60</span><span>       1.30  0.201     
+#&gt; </span><span style='color: #555555;'> 4</span><span> as.factor(cyl)             6-4          -</span><span style='color: #BB0000;'>5.40</span><span>    -</span><span style='color: #BB0000;'>9.45</span><span>      -</span><span style='color: #BB0000;'>1.36</span><span>  0.007</span><span style='text-decoration: underline;'>48</span><span>   
+#&gt; </span><span style='color: #555555;'> 5</span><span> as.factor(cyl)             8-4          -</span><span style='color: #BB0000;'>5.23</span><span>    -</span><span style='color: #BB0000;'>8.60</span><span>      -</span><span style='color: #BB0000;'>1.86</span><span>  0.002</span><span style='text-decoration: underline;'>01</span><span>   
+#&gt; </span><span style='color: #555555;'> 6</span><span> as.factor(cyl)             8-6           0.172   -</span><span style='color: #BB0000;'>3.70</span><span>       4.04  0.993     
+#&gt; </span><span style='color: #555555;'> 7</span><span> as.factor(gear):as.factor… 4:4-3:4       5.42    -</span><span style='color: #BB0000;'>6.65</span><span>      17.5   0.832     
+#&gt; </span><span style='color: #555555;'> 8</span><span> as.factor(gear):as.factor… 5:4-3:4       6.70    -</span><span style='color: #BB0000;'>7.24</span><span>      20.6   0.778     
+#&gt; </span><span style='color: #555555;'> 9</span><span> as.factor(gear):as.factor… 3:6-3:4      -</span><span style='color: #BB0000;'>1.75</span><span>   -</span><span style='color: #BB0000;'>15.7</span><span>       12.2   1.00      
+#&gt; </span><span style='color: #555555;'>10</span><span> as.factor(gear):as.factor… 4:6-3:4      -</span><span style='color: #BB0000;'>1.75</span><span>   -</span><span style='color: #BB0000;'>14.5</span><span>       11.0   1.00      
+#&gt; </span><span style='color: #555555;'># … with 32 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>

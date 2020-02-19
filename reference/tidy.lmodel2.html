@@ -92,7 +92,7 @@ specify which components to return." />
         <a class="navbar-brand" href="../index.html">broom</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.9003</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3.9000</span>
         </div>
       </div>
     </div>
@@ -256,29 +256,29 @@ be valid. More information can be found in
 #&gt; 
 #&gt; H statistic used for computing C.I. of MA: 0.006120651 
 #&gt; </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>Ex2.res</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 6
+<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>Ex2.res</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 6</span><span>
 #&gt;   method term      estimate conf.low conf.high p.value
-#&gt;   &lt;fct&gt;  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 MA     Intercept    13.1      1.35     19.8     0.01
-#&gt; 2 MA     Slope         3.47     2.66      4.87    0.01
-#&gt; 3 OLS    Intercept    20.0     12.5      27.6     0.01
-#&gt; 4 OLS    Slope         2.63     1.86      3.40    0.01
-#&gt; 5 RMA    Intercept    17.3      8.96     23.8     0.01
-#&gt; 6 RMA    Slope         2.96     2.17      3.96    0.01
-#&gt; 7 SMA    Intercept    16.5      9.20     22.1    NA   
-#&gt; 8 SMA    Slope         3.06     2.38      3.93   NA   </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/glance.html'>glance</a></span>(<span class='no'>Ex2.res</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> MA     Intercept    13.1      1.35     19.8     0.01
+#&gt; </span><span style='color: #555555;'>2</span><span> MA     Slope         3.47     2.66      4.87    0.01
+#&gt; </span><span style='color: #555555;'>3</span><span> OLS    Intercept    20.0     12.5      27.6     0.01
+#&gt; </span><span style='color: #555555;'>4</span><span> OLS    Slope         2.63     1.86      3.40    0.01
+#&gt; </span><span style='color: #555555;'>5</span><span> RMA    Intercept    17.3      8.96     23.8     0.01
+#&gt; </span><span style='color: #555555;'>6</span><span> RMA    Slope         2.96     2.17      3.96    0.01
+#&gt; </span><span style='color: #555555;'>7</span><span> SMA    Intercept    16.5      9.20     22.1    </span><span style='color: #BB0000;'>NA</span><span>   
+#&gt; </span><span style='color: #555555;'>8</span><span> SMA    Slope         3.06     2.38      3.93   </span><span style='color: #BB0000;'>NA</span><span>   </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/generics/man/glance.html'>glance</a></span>(<span class='no'>Ex2.res</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 5</span><span>
 #&gt;   r.squared theta    p.value       H  nobs
-#&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
-#&gt; 1     0.740  5.11 0.00000116 0.00612    20</div><div class='input'>
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     0.740  5.11 0.000</span><span style='text-decoration: underline;'>001</span><span>16 0.006</span><span style='text-decoration: underline;'>12</span><span>    20</div><div class='input'>
 <span class='co'># this allows coefficient plots with ggplot2</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span>(<span class='no'>Ex2.res</span>), <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>estimate</span>, <span class='no'>term</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>method</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_errorbarh.html'>geom_errorbarh</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>xmin</span> <span class='kw'>=</span> <span class='no'>conf.low</span>, <span class='kw'>xmax</span> <span class='kw'>=</span> <span class='no'>conf.high</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_errorbarh.html'>geom_errorbarh</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>xmin</span> <span class='kw'>=</span> <span class='no'>conf.low</span>, <span class='kw'>xmax</span> <span class='kw'>=</span> <span class='no'>conf.high</span>))</div><div class='img'><img src='tidy.lmodel2-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
