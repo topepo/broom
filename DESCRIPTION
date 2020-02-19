@@ -298,7 +298,6 @@ Imports:
     ellipsis,
     generics (>= 0.0.2),
     glue,
-    methods,
     purrr,
     reshape2,
     rlang,
