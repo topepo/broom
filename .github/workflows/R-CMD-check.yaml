@@ -67,6 +67,8 @@ jobs:
           deps[["installed"]] <- vapply(deps[["package"]], remotes:::local_sha, character(1))
           update(deps)
           remotes::install_cran("rcmdcheck")
+          Rscript -e "try(remotes::install_cran('glmnet'), silent = TRUE)"
+          Rscript -e "try(remotes::install_cran('glmnetUtils'), silent = TRUE)"
         shell: Rscript {0}
 
       - name: Check

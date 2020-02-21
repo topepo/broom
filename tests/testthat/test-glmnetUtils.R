@@ -3,16 +3,14 @@ context("glmnetUtils")
 skip_if_not_installed("modeltests")
 library(modeltests)
 
+skip_if_not_installed("glmnet")
 skip_if_not_installed("glmnetUtils")
-library(glmnetUtils)
 
-set.seed(27)
+# ------------------------------------------------------------------------------
 
-fit <- glmnet(formula = mpg ~ ., data = mtcars)
-fit2 <- glmnet(formula = Species ~ ., data = iris, family = "multinomial")
+load(test_path("cache/glmnet.RData"))
 
-cv_fit <- cv.glmnet(formula = mpg ~ ., data = mtcars)
-cv_fit2 <- cv.glmnet(formula = Species ~ ., data = iris, family = "multinomial")
+# ------------------------------------------------------------------------------
 
 
 test_that("glmnet.formula tidier arguments", {
@@ -24,8 +22,8 @@ test_that("glmnet.formula tidier arguments", {
 })
 
 test_that("tidy.glmnet.formula", {
-  td <- tidy(fit)
-  tdz <- tidy(fit, return_zeros = TRUE)
+  td <- tidy(form_fit_gaussian)
+  tdz <- tidy(form_fit_gaussian, return_zeros = TRUE)
 
   check_tidy_output(td)
   check_tidy_output(tdz)
@@ -38,8 +36,8 @@ test_that("tidy.glmnet.formula", {
 
   # multinomial
 
-  td2 <- tidy(fit2)
-  td2z <- tidy(fit2, return_zeros = TRUE)
+  td2 <- tidy(form_fit_multinomial)
+  td2z <- tidy(form_fit_multinomial, return_zeros = TRUE)
 
   check_tidy_output(td2)
   check_tidy_output(td2z)
@@ -58,8 +56,8 @@ test_that("tidy.glmnet.formula", {
 })
 
 test_that("glance.glmnet.formula", {
-  gl <- glance(fit)
-  gl2 <- glance(fit2)
+  gl <- glance(form_fit_gaussian)
+  gl2 <- glance(form_fit_multinomial)
 
   check_glance_outputs(gl, gl2)
   

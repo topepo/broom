@@ -4,19 +4,12 @@ skip_if_not_installed("modeltests")
 library(modeltests)
 
 skip_if_not_installed("glmnet")
-library(glmnet)
 
-set.seed(27)
+# ------------------------------------------------------------------------------
 
-x <- matrix(rnorm(100 * 20), 100, 20)
-y <- rnorm(100)
-g <- sample(1:4, 100, replace = TRUE)
+load(test_path("cache/glmnet.RData"))
 
-fit <- glmnet(x, y)
-fit2 <- glmnet(x, g, family = "multinomial")
-
-cv_fit <- cv.glmnet(x, y)
-cv_fit2 <- cv.glmnet(x, g, family = "multinomial")
+# ------------------------------------------------------------------------------
 
 test_that("glmnet tidier arguments", {
   check_arguments(tidy.glmnet)
@@ -28,8 +21,8 @@ test_that("glmnet tidier arguments", {
 
 test_that("tidy.glmnet", {
   
-  td <- tidy(fit)
-  tdz <- tidy(fit, return_zeros = TRUE)
+  td <- tidy(xy_fit_gaussian)
+  tdz <- tidy(xy_fit_gaussian, return_zeros = TRUE)
   
   check_tidy_output(td)
   check_tidy_output(tdz)
@@ -42,8 +35,8 @@ test_that("tidy.glmnet", {
   
   # multinomial
   
-  td2 <- tidy(fit2)
-  td2z <- tidy(fit2, return_zeros = TRUE)
+  td2 <- tidy(xy_fit_multinomial)
+  td2z <- tidy(xy_fit_multinomial, return_zeros = TRUE)
   
   check_tidy_output(td2)
   check_tidy_output(td2z)
@@ -57,30 +50,30 @@ test_that("tidy.glmnet", {
 })
 
 test_that("glance.glmnet", {
-  gl <- glance(fit)
-  gl2 <- glance(fit2)
+  gl <- glance(xy_fit_gaussian)
+  gl2 <- glance(xy_fit_multinomial)
   
   check_glance_outputs(gl, gl2)
 })
 
 test_that("tidy.cv.glmnet", {
   
-  td <- tidy(cv_fit)
+  td <- tidy(xy_cv_fit_gaussian)
   
   check_tidy_output(td)
   check_dims(td, expected_cols = 6)
   
   # multinomial
   
-  td2 <- tidy(cv_fit2)
+  td2 <- tidy(xy_cv_fit_multinomial)
   
   check_tidy_output(td2)
   check_dims(td2, expected_cols = 6)
 })
 
 test_that("glance.cv.glmnet", {
-  gl <- glance(cv_fit)
-  gl2 <- glance(cv_fit2)
+  gl <- glance(xy_cv_fit_gaussian)
+  gl2 <- glance(xy_cv_fit_multinomial)
   
   check_glance_outputs(gl, gl2)
 })

@@ -330,7 +330,6 @@ Suggests:
     gamlss.dist,
     geepack,
     ggplot2,
-    glmnet,
     gmm,
     Hmisc,
     irlba,
@@ -381,7 +380,6 @@ Suggests:
     tseries,
     xergm,
     zoo,
-    glmnetUtils,
     lme4,
     gee,
     mclogit
