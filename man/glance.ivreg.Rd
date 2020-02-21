@@ -40,7 +40,7 @@ the measure will be reported as \code{NA}.
 \note{
 Beginning 0.7.0, \code{glance.ivreg} returns statistics for the
 Wu-Hausman test for endogeneity and the Sargan test of
-overidentifying restrictions. Sargan test values are returned as \code{NA}
+over-identifying restrictions. Sargan test values are returned as \code{NA}
 if the number of instruments is not greater than the number of
 endogenous regressors.
 }

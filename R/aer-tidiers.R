@@ -106,7 +106,7 @@ augment.ivreg <- function(x, data = model.frame(x), newdata = NULL, ...) {
 #'
 #' @note Beginning 0.7.0, `glance.ivreg` returns statistics for the
 #' Wu-Hausman test for endogeneity and the Sargan test of
-#' overidentifying restrictions. Sargan test values are returned as `NA`
+#' over-identifying restrictions. Sargan test values are returned as `NA`
 #' if the number of instruments is not greater than the number of
 #' endogenous regressors.
 #'
