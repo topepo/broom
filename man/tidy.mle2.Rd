@@ -36,20 +36,6 @@ model component varies cross models but is usually self-evident.
 If a model has several distinct types of components, you will need to
 specify which components to return.
 }
-\examples{
-
-library(bbmle)
-
-x <- 0:10
-y <- c(26, 17, 13, 12, 20, 5, 9, 8, 5, 4, 8)
-d <- data.frame(x,y)
-
-fit <- mle2(y ~ dpois(lambda = ymean),
-            start = list(ymean = mean(y)), data = d)
-
-tidy(fit)
-
-}
 \seealso{
 \code{\link[=tidy]{tidy()}}, \code{\link[bbmle:mle2]{bbmle::mle2()}}, \code{\link[=tidy_optim]{tidy_optim()}}
 }
@@ -63,4 +49,20 @@ A \code{\link[tibble:tibble]{tibble::tibble()}} with columns:
   \item{std.error}{The standard error of the regression term.}
   \item{term}{The name of the regression term.}
 
+}
+\section{Examples}{\if{html}{\out{<div class="r">}}\preformatted{library(bbmle)
+
+x <- 0:10
+y <- c(26, 17, 13, 12, 20, 5, 9, 8, 5, 4, 8)
+d <- data.frame(x,y)
+
+fit <- mle2(y ~ dpois(lambda = ymean),
+            start = list(ymean = mean(y)), data = d)
+
+tidy(fit)
+#> # A tibble: 1 x 5
+#>   term  estimate std.error statistic  p.value
+#>   <chr>    <dbl>     <dbl>     <dbl>    <dbl>
+#> 1 ymean     11.5      1.02      11.3 1.86e-29
+}\if{html}{\out{</div>}}
 }
